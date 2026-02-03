@@ -11,12 +11,14 @@ namespace _Game.Editor.Board
     public class BoardEditorWindow : OdinMenuEditorWindow
     {
         public string Version;
+        public const float WindowWidth = 780f;
+        public const float WindowHeight = 900f;
 
         [MenuItem("Tools/Board Editor")]
         public static void Open()
         {
             var window = GetWindow<BoardEditorWindow>();
-            window.position = GUIHelper.GetEditorWindowRect().AlignCenter(1000, 500);
+            window.position = GUIHelper.GetEditorWindowRect().AlignCenter(WindowWidth, WindowHeight);
         }
 
         protected override OdinMenuTree BuildMenuTree()

@@ -4,10 +4,12 @@ using UnityEngine;
 
 namespace _Game.Scripts.Data
 {
-    [CreateAssetMenu(fileName = nameof(EntityData), menuName = Const.SOPath.SO_DATA_MENU_PATH + nameof(EntityData), order = 1)]
+    [CreateAssetMenu(fileName = nameof(EntityData), menuName = Const.SOPath.SO_DATA_MENU_PATH + nameof(EntityData),
+        order = 1)]
     public class EntityData : SerializedScriptableObject
     {
         public Guid ID;
+        [PreviewField]
         public Sprite Sprite;
         // public BaseEntity Prefab;
 

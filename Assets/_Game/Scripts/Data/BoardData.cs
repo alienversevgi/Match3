@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using GamePlay.Components.Randomizer;
 using Sirenix.OdinInspector;
 #if UNITY_EDITOR
 using UnityEditor;
@@ -7,7 +8,16 @@ using UnityEngine;
 
 namespace _Game.Scripts.Data
 {
-    [CreateAssetMenu(fileName = nameof(BoardData), menuName = Const.SOPath.SO_DATA_MENU_PATH + nameof(BoardData), order = 1)]
+    public enum TestGridType
+    {
+        A,
+        B,
+        C,
+        D,
+        E
+    }
+    [CreateAssetMenu(fileName = nameof(BoardData), menuName = Const.SOPath.SO_DATA_MENU_PATH + nameof(BoardData),
+        order = 1)]
     public class BoardData : SerializedScriptableObject
     {
         [OnValueChanged(nameof(UpdateGrid))] public int Width;
@@ -15,12 +25,18 @@ namespace _Game.Scripts.Data
 
         public List<EntityData> Entities;
 
-        [Space, HideLabel, Title("Selected Cell"), BoxGroup()]
+        [Space(10)] [HideLabel,BoxGroup("Selected Cell")] [InlineProperty]
         public CellData SelectedCell;
 
-        [TableMatrix(DrawElementMethod = nameof(DrawCell), SquareCells = true)]
+        [Space(10)] [TableMatrix(DrawElementMethod = nameof(DrawCell), SquareCells = true)]
         public CellData[,] Grid;
-
+        
+        [FoldoutGroup("Test Grid Filler")]
+        public TestGridType[,] TestGridFiller;
+        
+        [FoldoutGroup("Test Grid Filler")]
+        public SerializedDictionary<TestGridType,EntityData> TestGridDatas;
+        
 #if UNITY_EDITOR
         [OnInspectorInit]
         private void Init()
@@ -42,7 +58,7 @@ namespace _Game.Scripts.Data
                 }
             }
         }
-        
+
         private CellData DrawCell(Rect rect, CellData value)
         {
             var size = 64f;
@@ -67,6 +83,33 @@ namespace _Game.Scripts.Data
             }
 
             return value;
+        }
+
+        [Button]
+        private void ApplyTestGrid()
+        {
+            if (TestGridFiller == null || TestGridFiller.Length == 0)
+            {
+                TestGridFiller = new TestGridType[8, 10]
+                {
+                    { TestGridType.A, TestGridType.D, TestGridType.B, TestGridType.E, TestGridType.C, TestGridType.A, TestGridType.D, TestGridType.B, TestGridType.C, TestGridType.A },
+                    { TestGridType.C, TestGridType.A, TestGridType.E, TestGridType.B, TestGridType.D, TestGridType.C, TestGridType.A, TestGridType.E, TestGridType.B, TestGridType.C },
+                    { TestGridType.B, TestGridType.E, TestGridType.C, TestGridType.D, TestGridType.A, TestGridType.B, TestGridType.E, TestGridType.C, TestGridType.D, TestGridType.A },
+                    { TestGridType.D, TestGridType.B, TestGridType.A, TestGridType.C, TestGridType.E, TestGridType.D, TestGridType.B, TestGridType.A, TestGridType.C, TestGridType.E },
+                    { TestGridType.E, TestGridType.C, TestGridType.D, TestGridType.A, TestGridType.B, TestGridType.E, TestGridType.C, TestGridType.D, TestGridType.A, TestGridType.B },
+                    { TestGridType.A, TestGridType.D, TestGridType.B, TestGridType.E, TestGridType.C, TestGridType.A, TestGridType.D, TestGridType.B, TestGridType.E, TestGridType.C },
+                    { TestGridType.C, TestGridType.A, TestGridType.E, TestGridType.B, TestGridType.D, TestGridType.C, TestGridType.A, TestGridType.E, TestGridType.B, TestGridType.D },
+                    { TestGridType.B, TestGridType.E, TestGridType.C, TestGridType.D, TestGridType.A, TestGridType.B, TestGridType.E, TestGridType.C, TestGridType.D, TestGridType.A }
+                };
+            }
+
+            for (int y = Height - 1; y >= 0; y--)
+            {
+                for (int x = 0; x < Width; x++)
+                {
+                    Grid[x, y].Entity = TestGridDatas[TestGridFiller[x, y]];
+                }
+            }
         }
 #endif
     }
