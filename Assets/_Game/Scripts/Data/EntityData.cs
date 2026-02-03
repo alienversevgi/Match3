@@ -11,8 +11,7 @@ namespace _Game.Scripts.Data
         public Guid ID;
         [PreviewField]
         public Sprite Sprite;
-        // public BaseEntity Prefab;
-
+        
         private void OnEnable()
         {
             if (ID == Guid.Empty)
