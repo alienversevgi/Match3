@@ -1,4 +1,5 @@
 ﻿using _Game.Settings;
+using _Game.Signals;
 using UnityEngine;
 using Zenject;
 
@@ -24,7 +25,13 @@ namespace _Game.Installers
 
         private void BindSignals()
         {
+            BindBoardSignals();
+        }
 
+        private void BindBoardSignals()
+        {
+            Container.DeclareSignal<BoardSignals.Swipe>().RequireSubscriber();
+            Container.DeclareSignal<BoardSignals.Click>().RequireSubscriber();
         }
     }
 }
