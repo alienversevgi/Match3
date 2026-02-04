@@ -1,4 +1,7 @@
-﻿using _Game.Settings;
+﻿using _Game.Scripts.Factories;
+using _Game.Scripts.Handlers;
+using _Game.Scripts.Pipeline;
+using _Game.Settings;
 using _Game.Signals;
 using UnityEngine;
 using Zenject;
@@ -13,6 +16,11 @@ namespace _Game.Installers
         {
             SignalBusInstaller.Install(Container);
 
+            Container.Bind<BoardPipelineController>().AsSingle();
+            Container.BindInterfacesAndSelfTo<SwipeHandler>().AsSingle();
+            Container.Bind<MatchCheckHandler>().AsSingle();
+            Container.Bind<EntityFactory>().AsSingle();
+            
             BindSignals();
             BindPools();
 
@@ -31,7 +39,7 @@ namespace _Game.Installers
         private void BindBoardSignals()
         {
             Container.DeclareSignal<BoardSignals.Swipe>().RequireSubscriber();
-            Container.DeclareSignal<BoardSignals.Click>().RequireSubscriber();
+            Container.DeclareSignal<BoardSignals.Click>().OptionalSubscriber();
         }
     }
 }

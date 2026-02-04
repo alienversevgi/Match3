@@ -1,31 +1,42 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using _Game.Scripts.Board.Entity;
 using _Game.Scripts.Data;
+using _Game.Scripts.Factories;
+using _Game.Scripts.MatchStrategies;
+using _Game.Scripts.Pipeline;
 using UnityEngine;
+using Zenject;
 
 namespace _Game.Scripts.Board
 {
     public class BoardManager : MonoBehaviour
     {
-        [SerializeField] private BoardData boardData;
         [SerializeField] private Grid grid;
         [SerializeField] private Transform container;
-        [SerializeField] private BaseEntity entityPrefab;
-        
+
+        [Inject] private EntityFactory _entityFactory;
+
         private Cell[,] _cells = new Cell[8, 10];
 
-        public int Width => boardData.Width;
-        public int Height => boardData.Height;
+        public int Width => Data.Width;
+        public int Height => Data.Height;
 
-        private void Start()
-        {
-            Initialize(boardData);
-        }
+        public BoardContext Context { get; private set; }
+        public BoardData Data { get; private set; }
 
         public void Initialize(BoardData data)
         {
-            boardData = data;
+            Context = new BoardContext()
+            {
+                Board = this,
+                EffectedRows = new HashSet<int>(),
+                Matches = new List<MatchResult>(),
+                IsRunning = false
+            };
+
+            Data = data;
             Setup();
         }
 
@@ -49,9 +60,9 @@ namespace _Game.Scripts.Board
 
             cell.Initialize(position);
 
-            var cellData = boardData.Grid[x, Height - y - 1];
+            var cellData = Data.Grid[x, Height - y - 1];
             var entityData = GetEntityById(cellData.Entity.ID);
-            var entity = Instantiate(entityPrefab, worldPosition, Quaternion.identity, container);
+            var entity = SpawnEntity(entityData, worldPosition);
 
             entity.Initialize(entityData, position);
             cell.SetEntity(entity);
@@ -61,17 +72,18 @@ namespace _Game.Scripts.Board
 
         public EntityData GetRandomEntity()
         {
-            return boardData.Entities[UnityEngine.Random.Range(0, boardData.Entities.Count)];
+            return Data.Entities[UnityEngine.Random.Range(0, Data.Entities.Count)];
         }
 
         public EntityData GetEntityById(Guid id)
         {
-            return boardData.Entities.First(entity => entity.ID.Equals(id));
+            return Data.Entities.First(entity => entity.ID.Equals(id));
         }
 
         public BaseEntity SpawnEntity(EntityData data, Vector3 position)
         {
-            return Instantiate(entityPrefab, position, Quaternion.identity, container);
+            return _entityFactory.Spawn(data.Prefab, data.Prefab.PoolID, position,
+                Quaternion.identity, container);
         }
 
         public Vector3 CellToWorld(Cell cell) => CellPositionToWorld(cell.Position);
