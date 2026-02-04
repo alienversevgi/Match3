@@ -14,5 +14,13 @@ namespace _Game.Scripts.Board.Entity
             this.transform.DOScale(Vector3.zero, .2f);
             await UniTask.CompletedTask;
         }
+
+        public override void Dispose()
+        {
+            base.Dispose();
+            this.transform.DOKill();
+            this.transform.eulerAngles = Vector3.zero;
+            this.transform.localScale = Vector3.one;
+        }
     }
 }

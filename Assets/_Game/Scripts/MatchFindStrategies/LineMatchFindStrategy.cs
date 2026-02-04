@@ -63,8 +63,7 @@ namespace _Game.Scripts.MatchStrategies
                 matchPoints += match;
             }
 
-            Debug.Log(
-                $"checkMatch {position} : {result.HasMatch} : {result.Positions.Count} h:{horizontalMatch} v:{verticalMatch} [{matchPoints}]");
+            // Debug.Log($"checkMatch {position} : {result.HasMatch} : {result.Positions.Count} h:{horizontalMatch} v:{verticalMatch} [{matchPoints}]");
             ClearMatchData();
             return result;
         }

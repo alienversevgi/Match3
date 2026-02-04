@@ -14,6 +14,6 @@ namespace _Game.Scripts.MatchStrategies
     {
         MatchType Type { get; }
         float Duration { get; }
-        UniTask Execute(BoardContext context, MatchResult result);
+        UniTask<bool> Execute(BoardContext context, MatchResult result);
     }
 }

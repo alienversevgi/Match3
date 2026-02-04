@@ -1,17 +1,15 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using _Game.Scripts.Board.Entity;
+using _Game.Scripts.Components;
 using _Game.Scripts.Data;
 using _Game.Scripts.Factories;
-using _Game.Scripts.MatchStrategies;
-using _Game.Scripts.Pipeline;
 using UnityEngine;
 using Zenject;
 
 namespace _Game.Scripts.Board
 {
-    public class BoardManager : MonoBehaviour
+    public class BoardManager : GameBehaviour
     {
         [SerializeField] private Grid grid;
         [SerializeField] private Transform container;
@@ -28,14 +26,8 @@ namespace _Game.Scripts.Board
 
         public void Initialize(BoardData data)
         {
-            Context = new BoardContext()
-            {
-                Board = this,
-                EffectedRows = new HashSet<int>(),
-                Matches = new List<MatchResult>(),
-                IsRunning = false
-            };
-
+            Context = DiContainer.Instantiate<BoardContext>();
+         
             Data = data;
             Setup();
         }
@@ -64,13 +56,13 @@ namespace _Game.Scripts.Board
             var entityData = GetEntityById(cellData.Entity.ID);
             var entity = SpawnEntity(entityData, worldPosition);
 
-            entity.Initialize(entityData, position);
+            // entity.Initialize(entityData, position);
             cell.SetEntity(entity);
 
             _cells[x, y] = cell;
         }
 
-        public EntityData GetRandomEntity()
+        public EntityData GetRandomEntityData()
         {
             return Data.Entities[UnityEngine.Random.Range(0, Data.Entities.Count)];
         }
@@ -80,10 +72,17 @@ namespace _Game.Scripts.Board
             return Data.Entities.First(entity => entity.ID.Equals(id));
         }
 
+        public BaseEntity SpawnRandomEntity(Vector2Int position)
+        {
+            return SpawnEntity(GetRandomEntityData(), CellPositionToWorld(position));
+        }
+        
         public BaseEntity SpawnEntity(EntityData data, Vector3 position)
         {
-            return _entityFactory.Spawn(data.Prefab, data.Prefab.PoolID, position,
+            var entity = _entityFactory.Spawn(data.Prefab, data.Prefab.PoolID, position,
                 Quaternion.identity, container);
+            entity.Initialize(data, WorldToCell(position));
+            return entity;
         }
 
         public Vector3 CellToWorld(Cell cell) => CellPositionToWorld(cell.Position);

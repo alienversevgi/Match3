@@ -15,11 +15,18 @@ namespace _Game.Scripts.Pipeline.Processors
 
         public async UniTask Execute(BoardContext context)
         {
+            float waitDuration = 0;
             for (int i = 0; i < context.Matches.Count; i++)
             {
                 var result = context.Matches[i];
-                await _handlers[result.Type].Execute(context, result);
+                var handler = _handlers[result.Type];
+                var hasResult = await _handlers[result.Type].Execute(context, result);
+                
+                if (hasResult && waitDuration < handler.Duration)
+                    waitDuration = handler.Duration;
             }
+
+            await UniTask.WaitForSeconds(waitDuration);
         }
     }
 }

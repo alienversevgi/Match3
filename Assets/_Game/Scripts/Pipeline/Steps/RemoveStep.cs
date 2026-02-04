@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using _Game.Scripts.Board;
-using _Game.Scripts.MatchStrategies;
 using Cysharp.Threading.Tasks;
+using UnityEngine;
 
 namespace _Game.Scripts.Pipeline.Processors
 {
@@ -14,12 +14,23 @@ namespace _Game.Scripts.Pipeline.Processors
                 var result = context.Matches[i];
                 foreach (var position in result.Positions)
                 {
-                    context.Board.GetEntity(position).Explode().Forget();
-                    context.Board.GetCell(position).ClearEntity();
+                    var cell = context.Board.GetCell(position);
+                    if(cell.Entity is null)
+                        continue;
+                    // if (cell == null)
+                    // {
+                    //     Debug.Log($"Cell is null {position}");
+                    // }
+                    // else if(cell.Entity is null)
+                    // {
+                    //     Debug.Log($"Entity is null {position}");
+                    //     continue;
+                    // }
+                    cell.Entity.Explode().Forget();
+                    cell.ClearEntity();
                 }
             }
 
-            context.IsRunning = false;
             await UniTask.CompletedTask;
         }
     }

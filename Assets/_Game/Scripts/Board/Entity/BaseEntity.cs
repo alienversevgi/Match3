@@ -1,5 +1,4 @@
 using System;
-using System.ComponentModel;
 using _Game.Misc;
 using _Game.Scripts.Data;
 using _Game.Scripts.Factories;
@@ -10,6 +9,7 @@ using Zenject;
 
 namespace _Game.Scripts.Board.Entity
 {
+    [SelectionBase]
     public abstract class BaseEntity : MonoBehaviour,IDisposable
     {
         public class Pool : CustomMonoMemoryPool<BaseEntity>
@@ -44,7 +44,7 @@ namespace _Game.Scripts.Board.Entity
 
         public void SetPosition(Vector2Int position) => Position = position;
 
-        public void Dispose()
+        public virtual void Dispose()
         {
             _factory.Dispose(this,PoolID);
         }

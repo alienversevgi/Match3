@@ -16,6 +16,7 @@ namespace _Game.Scripts.Board
         public void SetEntity(BaseEntity entity)
         {
             Entity = entity;
+            Entity.name = $"E_{Position}";
             Entity.SetPosition(Position);
         }
 
