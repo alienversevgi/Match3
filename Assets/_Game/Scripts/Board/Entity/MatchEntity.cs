@@ -10,8 +10,8 @@ namespace _Game.Scripts.Board.Entity
     {
         public override async UniTask Merge() 
         {
-            this.transform.DORotate(new Vector3(0, 0, 15f), .2f);
-            this.transform.DOScale(Vector3.zero, .2f);
+            this.transform.DORotate(new Vector3(0, 0, 15f), .1f);
+            this.transform.DOScale(Vector3.zero, .1f);
             await UniTask.CompletedTask;
         }
 

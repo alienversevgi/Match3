@@ -23,6 +23,6 @@ MonoBehaviour:
     SerializationNodes:
     - Name: ID
       Entry: 2
-      Data: ca29053b47904390a9c17cd209220846
+      Data: fd485a6b70414054b232d0d4c3216d6a
   Sprite: {fileID: 21300000, guid: 554bf5d77969455468b91b06adfb057b, type: 3}
   Prefab: {fileID: -9035543135342649484, guid: 91f898715f40de544b75fcd32e687608, type: 3}

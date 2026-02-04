@@ -130,7 +130,7 @@ MonoBehaviour:
       Data: 11|_Game.Scripts.Data.CellData, Assembly-CSharp
     - Name: Entity
       Entry: 10
-      Data: 3
+      Data: 1
     - Name: 
       Entry: 8
       Data: 
@@ -202,7 +202,7 @@ MonoBehaviour:
       Data: 19|_Game.Scripts.Data.CellData, Assembly-CSharp
     - Name: Entity
       Entry: 10
-      Data: 2
+      Data: 4
     - Name: 
       Entry: 8
       Data: 
@@ -229,7 +229,7 @@ MonoBehaviour:
       Data: 22|_Game.Scripts.Data.CellData, Assembly-CSharp
     - Name: Entity
       Entry: 10
-      Data: 0
+      Data: 1
     - Name: 
       Entry: 8
       Data: 
@@ -319,7 +319,7 @@ MonoBehaviour:
       Data: 32|_Game.Scripts.Data.CellData, Assembly-CSharp
     - Name: Entity
       Entry: 10
-      Data: 2
+      Data: 0
     - Name: 
       Entry: 8
       Data: 
@@ -337,7 +337,7 @@ MonoBehaviour:
       Data: 34|_Game.Scripts.Data.CellData, Assembly-CSharp
     - Name: Entity
       Entry: 10
-      Data: 3
+      Data: 0
     - Name: 
       Entry: 8
       Data: 
@@ -1025,7 +1025,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e9515f57195ce1048a12379509b8f6c5, type: 2}
   - {fileID: 11400000, guid: 52243c733b474474a88cf2e78a42ba96, type: 2}
   SelectedCell:
-    Entity: {fileID: 11400000, guid: 52243c733b474474a88cf2e78a42ba96, type: 2}
+    Entity: {fileID: 11400000, guid: 70ac08fbc9e0bb54fb104a8d2078a222, type: 2}
   TestGridDatas:
     keyData: 0000000001000000020000000300000004000000
     valueData:

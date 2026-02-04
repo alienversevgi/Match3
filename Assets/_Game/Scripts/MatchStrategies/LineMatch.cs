@@ -7,7 +7,7 @@ namespace _Game.Scripts.MatchStrategies
     public class LineMatch : IMatch
     {
         public MatchType Type => MatchType.Line;
-        public float Duration => .2f;
+        public float Duration => .1f;
 
         public async UniTask<bool> Execute(BoardContext context, MatchResult result)
         {

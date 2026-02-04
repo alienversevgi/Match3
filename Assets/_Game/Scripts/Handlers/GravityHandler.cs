@@ -8,7 +8,7 @@ namespace _Game.Scripts.Handlers
 {
     public class GravityHandler
     {
-        private const float GRAVITY = 20f;
+        private const float GRAVITY = 30f;
 
         public bool IsFinished => _items.Count == 0;
 
