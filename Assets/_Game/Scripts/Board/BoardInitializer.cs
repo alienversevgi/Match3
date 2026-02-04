@@ -13,12 +13,7 @@ namespace _Game.Scripts.Board
         [Inject] private MatchCheckHandler _matchCheckHandler;
         [Inject] private LevelManager _levelManager;
 
-        private void Start()
-        {
-            Initialize();
-        }
-
-        private void Initialize()
+        public void Initialize()
         {
             _levelManager.Initialize();
             _board.Initialize(_levelManager.CurrentLevel.Board);
