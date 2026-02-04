@@ -37,10 +37,17 @@ namespace _Game.Scripts.Handlers
 
         private async UniTask HandleSwap(Vector2Int fromPoint, Vector2Int toPoint)
         {
+            if (!_board.IsInBounds(fromPoint) || !_board.IsInBounds(toPoint))
+                return;
+            
             _inputManager.Disable();
             await SwapItems(fromPoint, toPoint);
+            var hasFromMatch = _matchCheckHandler.Check(fromPoint);
+            var hasToMatch = _matchCheckHandler.Check(toPoint);
 
-            if (!_matchCheckHandler.Check(fromPoint) && !_matchCheckHandler.Check(toPoint))
+            Debug.Log($"CheckMatch : {hasFromMatch} : {hasToMatch}");
+
+            if (!hasFromMatch && !hasToMatch)
             {
                 await SwapItems(toPoint, fromPoint);
                 _inputManager.Enable();
