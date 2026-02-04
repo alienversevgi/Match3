@@ -5,21 +5,22 @@ using Cysharp.Threading.Tasks;
 
 namespace _Game.Scripts.Pipeline.Processors
 {
-    public class MatchStep : IBoardStep
+    public class RemoveStep : IBoardStep
     {
-        private readonly Dictionary<MatchType, IMatch> _handlers = new()
-        {
-            { MatchType.Line, new LineMatch() }
-            // T,L
-        };
-
         public async UniTask Execute(BoardContext context)
         {
             for (int i = 0; i < context.Matches.Count; i++)
             {
                 var result = context.Matches[i];
-                await _handlers[result.Type].Execute(context, result);
+                foreach (var position in result.Positions)
+                {
+                    context.Board.GetEntity(position).Explode().Forget();
+                    context.Board.GetCell(position).ClearEntity();
+                }
             }
+
+            context.IsRunning = false;
+            await UniTask.CompletedTask;
         }
     }
 }

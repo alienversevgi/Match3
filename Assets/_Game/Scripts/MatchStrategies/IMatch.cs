@@ -13,6 +13,7 @@ namespace _Game.Scripts.MatchStrategies
     public interface IMatch
     {
         MatchType Type { get; }
+        float Duration { get; }
         UniTask Execute(BoardContext context, MatchResult result);
     }
 }

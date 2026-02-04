@@ -13,7 +13,8 @@ namespace _Game.Scripts.Pipeline
         {
             Context = context;
             MatchPipeline = new BoardPipeline()
-                .AddStep(new MatchStep());
+                .AddStep(new MatchStep())
+                .AddStep(new RemoveStep());
         }
 
         public async UniTask RunMatch()
