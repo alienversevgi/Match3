@@ -16,7 +16,7 @@ namespace _Game.Scripts.Board
 
         [Inject] private EntityFactory _entityFactory;
 
-        private Cell[,] _cells = new Cell[8, 10];
+        private Cell[,] _cells;
 
         public int Width => Data.Width;
         public int Height => Data.Height;
@@ -50,13 +50,11 @@ namespace _Game.Scripts.Board
             var position = new Vector2Int(x, y);
             var worldPosition = grid.GetCellCenterWorld(new Vector3Int(x, y, 0));
 
-            cell.Initialize(position);
-
             var cellData = Data.Grid[x, Height - y - 1];
             var entityData = GetEntityById(cellData.Entity.ID);
             var entity = SpawnEntity(entityData, worldPosition);
 
-            // entity.Initialize(entityData, position);
+            cell.Initialize(position);
             cell.SetEntity(entity);
 
             _cells[x, y] = cell;

@@ -18,7 +18,8 @@ namespace _Game.Scripts.Pipeline.Processors
 
             await FallAllRow();
             await UniTask.WaitUntil(() => _context.GravityHandler.IsFinished);
-            context.Clear();
+            context.EffectedRows.Clear();
+            context.Matches.Clear();
             context.IsRunning = false;
         }
 

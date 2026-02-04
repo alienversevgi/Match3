@@ -1,4 +1,5 @@
 using _Game.Scripts.Board;
+using _Game.Scripts.Enums;
 using UnityEngine;
 
 namespace _Game.Scripts.MatchStrategies

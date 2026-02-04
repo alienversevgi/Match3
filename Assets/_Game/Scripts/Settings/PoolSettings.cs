@@ -1,4 +1,3 @@
-using _Game.Scripts.Controllers;
 using UnityEngine;
 
 namespace _Game.Settings

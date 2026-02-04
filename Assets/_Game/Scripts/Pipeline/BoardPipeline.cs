@@ -18,18 +18,10 @@ namespace _Game.Scripts.Pipeline
 
         public async UniTask Run(BoardContext context)
         {
-            var sw = new Stopwatch();
-
-            foreach (var step in _steps)
+            for (int i = 0; i < _steps.Count; i++)
             {
-                sw.Start();
-                Debug.Log(step.GetType().Name + "Started");
-                await step.Execute(context);
-                Debug.Log($"{step.GetType().Name} Ended Geçen süre: {sw.ElapsedMilliseconds} ms");
-                sw.Restart();
+                await _steps[i].Execute(context);
             }
-
-            sw.Stop();
         }
     }
 }

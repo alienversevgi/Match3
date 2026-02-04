@@ -16,7 +16,6 @@ namespace _Game.Scripts.Board
         public List<MatchResult> Matches;
         public HashSet<Vector2Int> NeedToChecks;
         public HashSet<int> EffectedRows;
-        public Dictionary<int, Queue<int>> EmptyCells;
 
         public BoardContext()
         {
@@ -25,12 +24,6 @@ namespace _Game.Scripts.Board
             NeedToChecks = new HashSet<Vector2Int>();
             Matches = new List<MatchResult>();
             IsRunning = false;
-        }
-
-        public void Clear()
-        {
-            EffectedRows.Clear();
-            Matches.Clear();
         }
     }
 }

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace _Game.Scripts.View.Entity
 {
-    public class BaseEntityView : MonoBehaviour
+    public abstract class BaseEntityView : MonoBehaviour
     {
         private SpriteRenderer _spriteRenderer;
         private EntityData _data;

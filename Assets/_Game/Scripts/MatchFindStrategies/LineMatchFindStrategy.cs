@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using _Game.Scripts.Board;
-using Sirenix.Utilities;
+using _Game.Scripts.Enums;
 using UnityEngine;
 
 namespace _Game.Scripts.MatchStrategies
@@ -56,14 +56,6 @@ namespace _Game.Scripts.MatchStrategies
 
             result.HasMatch = result.Positions.Count >= 3;
 
-            string matchPoints = "Points";
-
-            foreach (var match in result.Positions)
-            {
-                matchPoints += match;
-            }
-
-            // Debug.Log($"checkMatch {position} : {result.HasMatch} : {result.Positions.Count} h:{horizontalMatch} v:{verticalMatch} [{matchPoints}]");
             ClearMatchData();
             return result;
         }

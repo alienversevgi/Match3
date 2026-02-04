@@ -40,13 +40,7 @@ namespace _Game.Scripts.Handlers
             _inputManager.Disable();
             await SwapItems(fromPoint, toPoint);
 
-
-            var hasFromMatch = _matchCheckHandler.Check(fromPoint);
-            var hasToMatch = _matchCheckHandler.Check(toPoint);
-
-            Debug.Log($"CheckMatch : {hasFromMatch} : {hasToMatch}");
-
-            if (!hasFromMatch && !hasToMatch)
+            if (!_matchCheckHandler.Check(fromPoint) && !_matchCheckHandler.Check(toPoint))
             {
                 await SwapItems(toPoint, fromPoint);
                 _inputManager.Enable();

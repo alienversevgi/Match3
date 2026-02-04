@@ -17,15 +17,7 @@ namespace _Game.Scripts.Pipeline.Processors
                     var cell = context.Board.GetCell(position);
                     if(cell.Entity is null)
                         continue;
-                    // if (cell == null)
-                    // {
-                    //     Debug.Log($"Cell is null {position}");
-                    // }
-                    // else if(cell.Entity is null)
-                    // {
-                    //     Debug.Log($"Entity is null {position}");
-                    //     continue;
-                    // }
+              
                     cell.Entity.Explode().Forget();
                     cell.ClearEntity();
                 }

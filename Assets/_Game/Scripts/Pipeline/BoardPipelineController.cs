@@ -22,23 +22,20 @@ namespace _Game.Scripts.Pipeline
                 .AddStep(new RemoveStep())
                 .AddStep(new FallStep())
                 .AddStep(new FillStep())
-                .AddStep(new CheckStep())
-                ;
+                .AddStep(new CheckStep());
         }
 
         public async UniTask RunMatch()
         {
             Context.IsRunning = true;
             _inputManager.Disable();
-            Debug.Log("Started");
-            
+
             while (Context.IsRunning)
             {
                 await MatchPipeline.Run(Context);
             }
             
             _inputManager.Enable();
-            Debug.Log("Finished");
         }
     }
 }

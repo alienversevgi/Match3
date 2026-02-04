@@ -53,17 +53,15 @@ namespace _Game.Scripts.Managers
         {
             Vector2 screenPos = _input.Board.Drag.ReadValue<Vector2>();
 
-            _startTouchPosition = _camera.ScreenToWorldPoint(
-                new Vector3(screenPos.x, screenPos.y, 0)
-            );
+            _startTouchPosition = _camera.ScreenToWorldPoint(new Vector3(screenPos.x, screenPos.y, 0));
 
             SignalBus.Fire(new BoardSignals.Click()
             {
                 Position = _startTouchPosition
             });
+            
             _isTouchDown = true;
             _canDrag = true;
-            // Debug.Log($"Screen: {screenPos} | World: {_startTouchPosition}");
         }
 
         private void OnDrag(InputAction.CallbackContext context)
