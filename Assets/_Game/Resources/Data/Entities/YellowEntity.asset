@@ -25,3 +25,4 @@ MonoBehaviour:
       Entry: 2
       Data: 9f1c44efb2b14da6ba074eb834079f1a
   Sprite: {fileID: 21300000, guid: 84a53c9b39a2408478f50a66118fec89, type: 3}
+  Prefab: {fileID: -9035543135342649484, guid: 91f898715f40de544b75fcd32e687608, type: 3}

@@ -1,4 +1,5 @@
 using System;
+using _Game.Misc;
 using _Game.Scripts.Data;
 using _Game.Scripts.View.Entity;
 using UnityEngine;
@@ -7,10 +8,15 @@ namespace _Game.Scripts.Board.Entity
 {
     public abstract class BaseEntity : MonoBehaviour
     {
+        public class Pool : CustomMonoMemoryPool<BaseEntity>
+        {
+        }
+        
         protected EntityData BaseData { get; private set; }
         protected BaseEntityView BaseView { get; private set; }
         [field: SerializeField] public Guid ID { get; private set; }
         [field: SerializeField] public Vector2Int Position { get; private set; }
+        [field: SerializeField] public string PoolID { get; private set; }
 
         public virtual void Initialize(EntityData entityData, Vector2Int position)
         {

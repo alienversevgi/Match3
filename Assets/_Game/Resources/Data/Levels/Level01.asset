@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e58f8a13b4233145b4f2a111ad19659, type: 3}
-  m_Name: PinkEntity
+  m_Script: {fileID: 11500000, guid: 0d66bb0d74b34552be2f7e432f5d968a, type: 3}
+  m_Name: Level01
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
@@ -20,9 +20,5 @@ MonoBehaviour:
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
-    SerializationNodes:
-    - Name: ID
-      Entry: 2
-      Data: 8ec43c1200af40508bf858c18955d5c6
-  Sprite: {fileID: 21300000, guid: 84690f210fac9f841ac5dca11b0201fc, type: 3}
-  Prefab: {fileID: -9035543135342649484, guid: 91f898715f40de544b75fcd32e687608, type: 3}
+    SerializationNodes: []
+  Board: {fileID: 11400000, guid: 5156c536c7c9947418880c9bc76f79c4, type: 2}

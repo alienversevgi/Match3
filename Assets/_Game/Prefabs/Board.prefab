@@ -60,7 +60,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1b5192e86d4055bb71c2f8c68adf6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boardData: {fileID: 11400000, guid: 5156c536c7c9947418880c9bc76f79c4, type: 2}
   grid: {fileID: 6623260659326497814}
   container: {fileID: 5024843061835746107}
   entityPrefab: {fileID: -9035543135342649484, guid: 91f898715f40de544b75fcd32e687608, type: 3}

@@ -81,6 +81,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Position>k__BackingField: {x: 0, y: 0}
+  <PoolID>k__BackingField: MatchEntity
 --- !u!114 &761948992759504966
 MonoBehaviour:
   m_ObjectHideFlags: 0

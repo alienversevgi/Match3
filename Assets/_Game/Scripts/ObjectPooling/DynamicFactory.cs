@@ -51,6 +51,9 @@ namespace _Game.Factories
 
         public void Bind(KElement item, string id)
         {
+            if (_diContainer.HasBindingId<TPool>(id))
+                return;
+            
             _diContainer.BindMemoryPool<KElement, TPool>()
                 .WithId(id)
                 .WithInitialSize(10)

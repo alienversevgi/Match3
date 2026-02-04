@@ -25,8 +25,8 @@ namespace _Game.Scripts.Data
 
         public List<EntityData> Entities;
 
-        [Space(10)] [HideLabel,BoxGroup("Selected Cell")] [InlineProperty]
-        public CellData SelectedCell;
+        [Space(10)] [HideLabel,BoxGroup("Selected Cell")] [InlineProperty][SerializeField]
+        private CellData SelectedCell;
 
         [Space(10)] [TableMatrix(DrawElementMethod = nameof(DrawCell), SquareCells = true)]
         public CellData[,] Grid;

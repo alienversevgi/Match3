@@ -1,4 +1,5 @@
 using System;
+using _Game.Scripts.Board.Entity;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -11,6 +12,7 @@ namespace _Game.Scripts.Data
         public Guid ID;
         [PreviewField]
         public Sprite Sprite;
+        public BaseEntity Prefab;
         
         private void OnEnable()
         {
